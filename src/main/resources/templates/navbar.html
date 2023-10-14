@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<header class="header">
+  <nav class="header__menu">
+    <ul class="header__menu__list">
+
+        <li><a th:href="@{/}">홈버튼</a></li>
+      <li class="header__menu__item"><a class="header__menu__link" sec:authorize="isAnonymous()"
+                                        th:href="@{/login}">로그인</a></li>
+      <li class="header__menu__item"><a class="header__menu__link" sec:authorize="isAuthenticated()"
+                                        th:href="@{/logout}">로그아웃</a></li>
+      <li class="header__menu__item"><a class="header__menu__link" sec:authorize="isAnonymous()"
+                                        th:href="@{/signup}">회원가입</a></li>
+      <li class="header__menu__item"><a class="header__menu__link" sec:authorize="isAuthenticated()"
+                                        th:href="@{/create}">도서등록</a></li>
+
+    </ul>
+  </nav>
+</header>
+
+</body>
+</html>

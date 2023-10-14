@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header th:replace="/navbar.html"></header>
+<form th:action="@{/login}" method="post" class="sign_In">
+
+    <div class="login">
+        <input type="text" name="username" id="username" placeholder="username" ><br>
+        <input type="password" name="password" id="password" placeholder="password" ><br>
+        <input type="submit" value="로그인">
+    </div>
+
+</form>
+
+</body>
+</html>

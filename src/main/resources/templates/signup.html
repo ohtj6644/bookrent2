@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header th:replace="/navbar.html"></header>
+<form th:action="@{/signup}" th:object="${userCreateForm}" method="post" class="sign_In">
+
+  <div class="login">
+    <input type="text" th:field="*{username}" class="form-control" placeholder="USERNAME" />
+    <input type="password" th:field="*{password1}" class="form-control" placeholder="PASSWORD" />
+    <input type="password" th:field="*{password2}" class="form-control" placeholder="RE-PASSWORD">
+
+    <input onclick="this.style.backgroundColor = '#69c061';" type="submit" value="회원가입"/>
+  </div>
+
+</form>
+
+</body>
+</html>
