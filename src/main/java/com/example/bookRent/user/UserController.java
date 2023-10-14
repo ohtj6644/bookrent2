@@ -1,36 +1,38 @@
+import com.example.bookRent.user.User;
 import com.example.bookRent.user.UserCreateForm;
 import com.example.bookRent.user.UserService;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 @RequiredArgsConstructor
 public class UserController {
 
 
     final private UserService userService;
 
-    @RequestMapping(value = "/api/test",method = RequestMethod.GET)
-    @ResponseStatus(value = HttpStatus.OK)
+    @GetMapping("/api/test")
     public String getApiTest(){
         return "{\"result\":\"ok\"}";
     }
 
-    @RequestMapping(value = "/login",method = RequestMethod.GET)
+    @GetMapping("/login")
     public String login() {
         return "login";
     }
 
 
-    @RequestMapping(value = "/signup",method = RequestMethod.GET)
+    @GetMapping("/signup")
     public String signup(UserCreateForm userCreateForm) {
         return "signup";
     }
 
-    @RequestMapping(value = "/signup",method = RequestMethod.POST)
+    @PostMapping("/signup")
     public String signup(@Valid UserCreateForm userCreateForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "signup";
@@ -47,6 +49,26 @@ public class UserController {
         return "redirect:/";
     }
 
+
+    @PostMapping("/login")
+    public String login(HttpSession session, @RequestParam("username") String username, @RequestParam("password") String password) {
+        if (userService.authenticateUser(username, password)) {
+            session.setAttribute("loggedIn", true);
+
+            User user = userService.getUser(username);
+            session.setAttribute("user", user);
+
+            return "redirect:/";
+        } else {
+            return "login";
+        }
+    }
+
+    @GetMapping("/logout")
+    public String Logout(HttpSession session) {
+        session.removeAttribute("loggedIn");
+        return "redirect:/";
+    }
 
 
 }
