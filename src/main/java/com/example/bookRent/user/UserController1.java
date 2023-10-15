@@ -1,17 +1,18 @@
+package com.example.bookRent.user;
+
 import com.example.bookRent.user.User;
 import com.example.bookRent.user.UserCreateForm;
 import com.example.bookRent.user.UserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
-public class UserController {
+public class UserController1 {
 
 
     final private UserService userService;

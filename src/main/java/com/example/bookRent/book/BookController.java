@@ -5,6 +5,7 @@ import com.example.bookRent.user.User;
 import com.example.bookRent.user.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,10 +25,14 @@ public class BookController {
 
 
     @GetMapping("/create")
+    @PreAuthorize("isAuthenticated()")
     public String newsCreate(BookForm BookForm ){
         return "book_form";
     }
+
+
     @PostMapping("/create")
+    @PreAuthorize("isAuthenticated()")
     public String articleCreate(@Valid BookForm BookForm ,
                                 BindingResult bindingResult
                                 ) throws Exception {

@@ -1,6 +1,7 @@
 package com.example.bookRent.rent;
 
 
+import com.example.bookRent.book.Book;
 import com.example.bookRent.user.User;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -20,6 +21,10 @@ public class Rent {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "borrower_id")
     private User borrower;
+
+
+    @ManyToOne
+    private Book article;
 
     private LocalDate rentDate;
 
