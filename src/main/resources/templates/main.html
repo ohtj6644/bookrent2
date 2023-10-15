@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header th:replace="/navbar.html"></header>
+
+<table class="list_table">
+  <thead>
+  <tr>
+    <th class="number">도서 번호</th>
+    <th class="title">도서명</th>
+    <th class="writer">글쓴이</th>
+    <th class="count">대여건수</th>
+    <th class="boolean">대여가능여부 (Y/N)</th>
+    <th class="inquiry">대여 or 반납</th>
+
+    <!--                  <th class="button_menu">선택</th>-->
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="book, loop : ${paging}">
+    <td class="number" id="selectedBookId" th:text="${book.id}">번호</td>
+    <td class="title"th:text="${book.name}">도서명</td>
+    <td class="writer" th:text="${book.writer}">글쓴이</td>
+    <td class="count" th:text="${#lists.size(book.rentList)}">대여건수</td>
+    <td class="boolean" >Y</td>
+    <td class="inquiry" id="modify_btn"><a th:href="@{/rent/{id}(id=${product?.id})}"><button>대여</button></a></td>
+
+  </tr>
+  </tbody>
+</table>
+
+</body>
+</html>
