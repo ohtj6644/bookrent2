@@ -1,7 +1,6 @@
 package com.example.bookRent.book;
 
 
-import com.example.bookRent.user.User;
 import com.example.bookRent.user.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -13,9 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.security.Principal;
 
 @Controller
 @RequiredArgsConstructor

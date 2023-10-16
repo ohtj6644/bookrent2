@@ -12,9 +12,9 @@
 
         <li><a th:href="@{/}">홈버튼</a></li>
       <li class="header__menu__item"><a class="header__menu__link" sec:authorize="isAnonymous()"
-                                        th:href="@{/login}">로그인</a></li>
+                                        th:href="@{/user/login}">로그인</a></li>
       <li class="header__menu__item"><a class="header__menu__link" sec:authorize="isAuthenticated()"
-                                        th:href="@{/logout}">로그아웃</a></li>
+                                        th:href="@{/user/logout}">로그아웃</a></li>
       <li class="header__menu__item"><a class="header__menu__link" sec:authorize="isAnonymous()"
                                         th:href="@{/signup}">회원가입</a></li>
       <li class="header__menu__item"><a class="header__menu__link" sec:authorize="isAuthenticated()"

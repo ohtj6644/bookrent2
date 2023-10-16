@@ -1,14 +1,12 @@
 package com.example.bookRent.user;
 
-import com.example.bookRent.user.User;
-import com.example.bookRent.user.UserCreateForm;
-import com.example.bookRent.user.UserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
 
 @Controller
 @RequiredArgsConstructor
@@ -22,7 +20,7 @@ public class UserController1 {
         return "{\"result\":\"ok\"}";
     }
 
-    @GetMapping("/login")
+    @GetMapping("/user/login")
     public String login() {
         return "login";
     }
@@ -51,16 +49,17 @@ public class UserController1 {
     }
 
 
-    @PostMapping("/login")
-    public String login(HttpSession session, @RequestParam("username") String username, @RequestParam("password") String password) {
+    @PostMapping("/user/login")
+    public String login(Model model, HttpSession session, @RequestParam("username") String username, @RequestParam("password") String password) {
         if (userService.authenticateUser(username, password)) {
             session.setAttribute("loggedIn", true);
 
-            User user = userService.getUser(username);
+            SiteUser user = userService.getUser(username);
             session.setAttribute("user", user);
 
             return "redirect:/";
         } else {
+            model.addAttribute("error", true);
             return "login";
         }
     }
