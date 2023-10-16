@@ -8,7 +8,7 @@
 <body>
 <header th:replace="/navbar.html"></header>
 
-<a th:href="@{/create}">도서등록</a>
+
 
 <table class="list_table">
   <thead>
@@ -18,7 +18,7 @@
     <th class="writer">글쓴이</th>
     <th class="count">대여건수</th>
     <th class="boolean">대여가능여부 (Y/N)</th>
-    <th class="inquiry">대여 or 반납</th>
+    <th class="inquiry">대여 </th>
 
     <!--                  <th class="button_menu">선택</th>-->
   </tr>
@@ -29,8 +29,8 @@
     <td class="title"th:text="${book.name}">도서명</td>
     <td class="writer" th:text="${book.writer}">글쓴이</td>
     <td class="count" th:text="${#lists.size(book.rentList)}">대여건수</td>
-    <td class="boolean" >Y</td>
-    <td class="inquiry" id="modify_btn"><a th:href="@{/rent/{id}(id=${product?.id})}"><button>대여</button></a></td>
+    <td class="boolean" th:text="${book.state ? 'Y' : 'N'}"></td>
+    <td class="inquiry" id="modify_btn"><a th:href="@{|/rent/${book.id}|}"><button>대여</button></a></td>
 
   </tr>
   </tbody>

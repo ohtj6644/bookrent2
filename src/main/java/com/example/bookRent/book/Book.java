@@ -25,4 +25,6 @@ public class Book {
 
     @OneToMany(mappedBy = "article", cascade = CascadeType.REMOVE)
     private List<Rent> rentList;
+
+    private boolean state;
 }
