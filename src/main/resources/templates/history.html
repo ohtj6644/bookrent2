@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header th:replace="/navbar.html"></header>
+
+<h1>도서 대여 기록</h1>
+
+
+<table class="list_table">
+    <thead>
+    <tr>
+        <th class="number">대여 번호</th>
+        <th class="title">도서명</th>
+        <th class="writer">대여자 ID</th>
+        <th class="count">대여날짜</th>
+        <th class="boolean">대여상태</th>
+
+        <!--                  <th class="button_menu">선택</th>-->
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="rent, loop : ${paging}">
+        <td class="number" id="selectedBookId" th:text="${rent.id}">대여번호</td>
+        <td class="title"th:text="${rent.article.name}">도서명</td>
+        <td class="writer" th:text="${rent.borrower.username}">대여자 ID</td>
+        <td class="count" th:text="${rent.rentDate}">대여날짜</td>
+        <td class="boolean" th:text="${rent.state ? '대여중' : '반납완료'}"></td>
+
+
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

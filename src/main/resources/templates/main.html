@@ -2,23 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Main</title>
-  <link rel="stylesheet" href="/main.css"/>
+    <title>도서 대여관 시스템</title>
+  <link rel="stylesheet" href="/paging.css"/>
 </head>
 <body>
 <header th:replace="/navbar.html"></header>
 
 
-
+<h1>메인페이지</h1>
 <table class="list_table">
   <thead>
   <tr>
     <th class="number">도서 번호</th>
     <th class="title">도서명</th>
     <th class="writer">글쓴이</th>
-    <th class="count">대여건수</th>
-    <th class="boolean">대여가능여부 (Y/N)</th>
+    <th class="count">대여건수(대여기록)</th>
+    <th class="boolean">대여가능여부 </th>
     <th class="inquiry">대여 </th>
+
 
     <!--                  <th class="button_menu">선택</th>-->
   </tr>
@@ -28,9 +29,13 @@
     <td class="number" id="selectedBookId" th:text="${book.id}">번호</td>
     <td class="title"th:text="${book.name}">도서명</td>
     <td class="writer" th:text="${book.writer}">글쓴이</td>
-    <td class="count" th:text="${#lists.size(book.rentList)}">대여건수</td>
-    <td class="boolean" th:text="${book.state ? 'Y' : 'N'}"></td>
-    <td class="inquiry" id="modify_btn"><a th:href="@{|/rent/${book.id}|}"><button>대여</button></a></td>
+    <td class="count" ><a th:href="@{|/book/history/${book.id}|}" th:text="${#lists.size(book.rentList)}"></a>대여건수</td>
+    <td class="boolean" th:text="${book.state ? '대여가능' : '대여불가'}"></td>
+    <td class="inquiry" id="modify_btn" th:if="${book.state}">
+      <a th:href="@{|/rent/${book.id}|}">
+        <button>대여</button>
+      </a>
+    </td>
 
   </tr>
   </tbody>

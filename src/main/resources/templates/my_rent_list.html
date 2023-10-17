@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>나의 대여 목록</title>
+    <link rel="stylesheet" href="/paging.css"/>
+</head>
+<body>
+<header th:replace="/navbar.html"></header>
+
+<h1>나의 대여 목반</h1>
+<table class="list_table">
+    <thead>
+    <tr>
+        <th class="number">대여 번호</th>
+        <th class="title">도서명</th>
+        <th class="writer">글쓴이</th>
+        <th class="count">대여날짜</th>
+        <th class="boolean">대여상태</th>
+        <th class="inquiry">반납</th>
+
+        <!--                  <th class="button_menu">선택</th>-->
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="rent, loop : ${paging}">
+        <td class="number" id="selectedBookId" th:text="${rent.id}">대여번호</td>
+        <td class="title"th:text="${rent.article.name}">도서명</td>
+        <td class="writer" th:text="${rent.article.writer}">글쓴이</td>
+        <td class="count" th:text="${rent.rentDate}">대여날짜</td>
+        <td class="boolean" th:text="${rent.state ? '대여중' : '반납완료'}"></td>
+        <td class="inquiry" id="modify_btn" th:if="${rent.state}">
+            <a th:href="@{|/rent/return/${rent.id}|}">
+                <button>반납</button>
+            </a>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+
+<!-- 페이징처리 시작 -->
+<div th:if="${!paging.isEmpty()}" style="text-align: center;">
+    <ul class="pagination1 justify-content-center">
+        <li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
+            <a class="page-link1" th:href="${paging.hasPrevious} ? @{|?page=${paging.number-1}|} : @{|?page=0|}">
+                <span><</span>
+            </a>
+        </li>
+        <li th:each="page: ${#numbers.sequence(0, paging.totalPages-1)}"
+            th:if="${page >= paging.number-5 and page <= paging.number+5}"
+            th:classappend="${page == paging.number} ? 'active'"
+            class="page-item">
+            <a th:text="${page+1}" class="page-link1" th:href="@{|?page=${page}|}"></a>
+        </li>
+        <li class="page-item" th:classappend="${!paging.hasNext} ? 'disabled'">
+            <a class="page-link1" th:href="@{|?page=${paging.number+1}|}">
+                <span>></span>
+            </a>
+        </li>
+    </ul>
+</div>
+<!-- 페이징처리 끝-->
+
+</body>
+</html>

@@ -2,6 +2,7 @@ package com.example.bookRent.book;
 
 
 import com.example.bookRent.DataNotFoundException;
+import com.example.bookRent.rent.Rent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -52,6 +53,12 @@ public class BookService {
         } else {
             throw new DataNotFoundException("freeNotice not found");
         }
+
+    }
+
+    public void returnBook(Book book) {
+        book.setState(true);
+        this.bookRepository.save(book);
 
     }
 }
