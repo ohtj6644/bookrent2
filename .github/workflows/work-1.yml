@@ -80,8 +80,8 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ env.OWNER_LC }}/bookrent:${{ needs.tag.outputs.tag_name }},
-            ghcr.io/${{ env.OWNER_LC }}/bookrent:latest
+            ghcr.io/${{ env.OWNER_LC }}/work-1:${{ needs.tag.outputs.tag_name }},
+            ghcr.io/${{ env.OWNER_LC }}/work-1:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
   deploy:
