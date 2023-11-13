@@ -3,6 +3,7 @@ package com.example.bookRent.book;
 
 import com.example.bookRent.DataNotFoundException;
 import com.example.bookRent.rent.Rent;
+import com.example.bookRent.user.SiteUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,12 +25,13 @@ public class BookService {
     final private BookRepository bookRepository;
 
 
-    public void create(BookForm bookForm) {
+    public void create(BookForm bookForm, SiteUser user) {
         Book book = new Book();
         book.setName(bookForm.getName());
         book.setWriter(bookForm.getWriter());
         book.setCreateDate(LocalDate.now());
         book.setState(true);
+        book.setAuthor(user);
         this.bookRepository.save(book);
     }
 
@@ -60,5 +62,20 @@ public class BookService {
         book.setState(true);
         this.bookRepository.save(book);
 
+    }
+
+    public Book getBookModify(Integer id) {
+            Optional<Book> question = this.bookRepository.findById(id);
+            if (question.isPresent()) {
+                return question.get();
+            } else {
+                throw new DataNotFoundException("question not found");
+            }
+        }
+
+    public void modify(Book book, String name, String writer) {
+        book.setName(name);
+        book.setWriter(writer);
+        this.bookRepository.save(book);
     }
 }

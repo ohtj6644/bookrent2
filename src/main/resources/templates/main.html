@@ -19,6 +19,7 @@
     <th class="count">대여건수(대여기록)</th>
     <th class="boolean">대여가능여부 </th>
     <th class="inquiry">대여 </th>
+    <th class="modify">수정 </th>
 
 
     <!--                  <th class="button_menu">선택</th>-->
@@ -35,6 +36,11 @@
       <a th:href="@{|/rent/${book.id}|}">
         <button>대여</button>
       </a>
+    </td>
+    <td class="modify" sec:authorize="isAuthenticated()" th:if="${book.author != null
+    and #authentication.getPrincipal().getUsername() == book.author.username}">
+      <a th:href="@{|/book/modify/${book.id}|}"
+         ><button>수정</button></a>
     </td>
 
   </tr>

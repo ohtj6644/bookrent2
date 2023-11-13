@@ -2,6 +2,7 @@ package com.example.bookRent.book;
 
 
 import com.example.bookRent.rent.Rent;
+import com.example.bookRent.user.SiteUser;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,4 +28,7 @@ public class Book {
     private List<Rent> rentList;
 
     private boolean state;
+
+    @ManyToOne
+    private SiteUser author;
 }

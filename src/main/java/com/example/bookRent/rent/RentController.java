@@ -22,7 +22,7 @@ import java.security.Principal;
 public class RentController {
 
 
-    final private RnetService rentService;
+    final private RentService rentService;
 
     final private BookService bookService;
 

@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class RnetService {
+public class RentService {
 
     final private RentRepository rentRepository;
 
