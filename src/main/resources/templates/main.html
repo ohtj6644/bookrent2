@@ -39,8 +39,9 @@
     </td>
     <td class="modify" sec:authorize="isAuthenticated()" th:if="${book.author != null
     and #authentication.getPrincipal().getUsername() == book.author.username}">
-      <a th:href="@{|/book/modify/${book.id}|}"
-         ><button>수정</button></a>
+      <a th:href="@{|/book/modify/${book.id}|}">
+        <button>수정</button>
+      </a>
     </td>
 
   </tr>

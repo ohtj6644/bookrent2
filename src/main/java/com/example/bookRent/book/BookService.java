@@ -31,7 +31,7 @@ public class BookService {
         book.setWriter(bookForm.getWriter());
         book.setCreateDate(LocalDate.now());
         book.setState(true);
-        book.setAuthor(user);
+        book.setRegistrant(user);
         this.bookRepository.save(book);
     }
 

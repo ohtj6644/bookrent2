@@ -81,7 +81,7 @@ public class BookController {
     @GetMapping("/book/modify/{id}")
     public String questionModify(BookForm bookForm, @PathVariable("id") Integer id, Principal principal) {
         Book book = this.bookService.getBookModify(id);
-        if(!book.getAuthor().getUsername().equals(principal.getName())) {
+        if(!book.getRegistrant().getUsername().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
         }
         bookForm.setName(book.getName());
@@ -97,7 +97,7 @@ public class BookController {
             return "question_form";
         }
         Book book= this.bookService.getBookModify(id);
-        if (!book.getAuthor().getUsername().equals(principal.getName())) {
+        if (!book.getRegistrant().getUsername().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
         }
         this.bookService.modify(book, bookForm.getName(), bookForm.getWriter());

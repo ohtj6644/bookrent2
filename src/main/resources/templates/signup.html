@@ -8,7 +8,7 @@
 <header th:replace="/navbar.html"></header>
 <form th:action="@{/signup}" th:object="${userCreateForm}" method="post" class="sign_In">
 
-  <div class="login">
+  <div class="signup">
     <input type="text" th:field="*{username}" class="form-control" placeholder="USERNAME" />
     <input type="password" th:field="*{password1}" class="form-control" placeholder="PASSWORD" />
     <input type="password" th:field="*{password2}" class="form-control" placeholder="RE-PASSWORD">

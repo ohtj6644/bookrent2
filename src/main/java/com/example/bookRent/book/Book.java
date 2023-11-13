@@ -30,5 +30,5 @@ public class Book {
     private boolean state;
 
     @ManyToOne
-    private SiteUser author;
+    private SiteUser registrant;
 }
